@@ -5,8 +5,8 @@ import { ChatOpenAI } from "@langchain/openai";
 
 const execute = async () => {
   const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo-1106",
-    openAIApiKey: "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",
+    modelName: process.env.MODEL,
+    openAIApiKey: process.env.OPENAPIKEY
   });
 
   const prompt = ChatPromptTemplate.fromTemplate(
