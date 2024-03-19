@@ -39,21 +39,21 @@ const execute = async () => {
 
   const { vectorstore } = await memoryVectorStore();
 
-  //   const retriever = vectorstore.asRetriever();
-  //   //   const convertDocsToString = convert(splitDocs);
-  //   const convertDocsToString = (documents) => {
-  //     return documents
-  //       .map((document) => {
-  //         return `<doc>\n${document.pageContent}\n</doc>`;
-  //       })
-  //       .join("\n");
-  //   };
+    const retriever = vectorstore.asRetriever();
+    //   const convertDocsToString = convert(splitDocs);
+    const convertDocsToString = (documents) => {
+      return documents
+        .map((document) => {
+          return `<doc>\n${document.pageContent}\n</doc>`;
+        })
+        .join("\n");
+    };
 
-  //   const documentRetrievalChain = RunnableSequence.from([
-  //     (input) => input.question,
-  //     retriever,
-  //     convertDocsToString,
-  //   ]);
+    const documentRetrievalChain = RunnableSequence.from([
+      (input) => input.question,
+      retriever,
+      convertDocsToString,
+    ]);
 
   const TEMPLATE_STRING = `You are an experienced researcher, 
 expert at interpreting and answering questions based on provided sources.
@@ -95,11 +95,11 @@ Now, answer this question using the above context:
 
   console.log(followupAnswer);
 
-  //   const docs = await documentRetrievalChain.invoke({
-  //     question: "Can you list them in bullet point form?",
-  //   });
+    const docs = await documentRetrievalChain.invoke({
+      question: "Can you list them in bullet point form?",
+    });
 
-  //   console.log(docs);
+    console.log(docs);
 };
 
 execute();
